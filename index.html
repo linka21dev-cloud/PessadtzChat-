@@ -162,20 +162,48 @@ function loadProfil(){
 }
 
 // KONTAK + CHAT SATU SATU FIX
-window.tambahKontak = ()=>{let id = document.getElementById('addContact').value.trim(); if(id && id!=userId){set(ref(db, 'kontak/'+userId+'/'+id), true); set(ref(db, 'kontak/'+id+'/'+userId), true); alert('Kontak ditambahkan')}else{alert('ID tidak valid')}}
+// KONTAK + CHAT SATU SATU FIX
+window.tambahKontak = async ()=>{
+  let id = document.getElementById('addContact').value.trim(); 
+  if(!id){alert('ID kosong'); return}
+  if(id == userId){alert('Itu ID kamu sendiri'); return}
+
+  // CEK DULU ID NYA ADA APA GAK
+  const userSnap = await get(child(ref(db),'users/'+id));
+  if(!userSnap.exists()){
+    alert('❌ ID tidak ditemukan. Suruh teman "Simpan Pengaturan" dulu');
+    return;
+  }
+
+  await set(ref(db, 'kontak/'+userId+'/'+id), true); 
+  await set(ref(db, 'kontak/'+id+'/'+userId), true);
+  document.getElementById('addContact').value = "";
+  alert('✅ Kontak ditambahkan: '+userSnap.val().nama);
+}
+
 function loadKontak(){
   onValue(ref(db,'kontak/'+userId),snap=>{
     document.getElementById('contactList').innerHTML='';
+    if(!snap.exists()){
+      document.getElementById('contactList').innerHTML = '<div style="text-align:center;color:#666;padding:20px">Belum ada kontak</div>';
+      return;
+    }
     snap.forEach(childSnap=>{
       let idTeman=childSnap.key;
-      get(child(ref(db),'users/'+idTeman)).then(s=>{let d=s.val();
-        document.getElementById('contactList').innerHTML+=`<div class="contact-item" onclick="bukaChatPrivate('${idTeman}')"><img src="${d?.foto||'https://i.imgur.com/8Km9tLL.png'}"><div><b>${d?.nama||'User '+idTeman}</b><br><span style="font-size:12px;color:#888">${d?.email||''}</span></div></div>`;
+      get(child(ref(db),'users/'+idTeman)).then(s=>{
+        let d=s.val();
+        if(d){
+          document.getElementById('contactList').innerHTML+=`<div class="contact-item" onclick="bukaChatPrivate('${idTeman}')"><img src="${d?.foto||'https://i.imgur.com/8Km9tLL.png'}"><div><b>${d?.nama||'User '+idTeman}</b><br><span style="font-size:12px;color:#888">${d?.email||'ID: '+idTeman}</span></div></div>`;
+        }
       })
     })
   })
 }
-window.bukaChatPrivate=(idTeman)=>{
-  let chatID = userId < idTeman? `chat_${userId}_${idTeman}` : `chat_${idTeman}_${userId}`;
+
+// INI YANG KEMARIN KEPOTONG
+window.bukaChatPrivate = (idTeman) => {
+  let chatID = userId < idTeman ? `chat_${userId}_${idTeman}` : `chat_${idTeman}_${userId}`;
+  document.getElementById('logo').innerText = "Chat Pribadi"; 
   bukaChat(chatID);
 }
 
