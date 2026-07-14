@@ -9,49 +9,41 @@
   :root{--primary:#00ff88;--bg:#070707;--card:#111111aa;--topbar:#0d0d0d;--text:#e0e0e0}
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
   body{background:var(--bg);color:var(--text);height:100vh;overflow:hidden;background-image: radial-gradient(circle at 20% 20%, #00ff8811 0%, transparent 50%);}
-
- .topbar{height:60px;background:var(--topbar);backdrop-filter:blur(10px);display:flex;align-items:center;padding:0 16px;gap:14px;position:sticky;top:0;z-index:50;border-bottom:1px solid #222}
- .topbar h1{font-size:19px;font-weight:600;flex:1;letter-spacing:0.5px}
- .topbar span{font-size:22px;cursor:pointer}
-
- .sidebar{position:fixed;left:-320px;top:0;width:320px;height:100%;background:#0a0a0aee;backdrop-filter:blur(20px);z-index:100;transition:0.4s cubic-bezier(.2,.8,.2,1);padding:24px;overflow-y:auto;border-right:1px solid #222}
- .sidebar.open{left:0}
- .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000d;display:none;z-index:99;backdrop-filter:blur(4px)}
- .overlay.show{display:block}
- .menu-item{padding:14px 0;border-bottom:1px solid #1a1a1a}
- .menu-item label{display:block;margin-bottom:8px;font-size:13px;color:#aaa;font-weight:300}
- .menu-item input[type="text"],.menu-item input[type="password"]{width:100%;padding:12px;background:#1a1a1a;border:1px solid #2a2a2a;color:var(--text);border-radius:10px;outline:none;transition:0.2s}
- .menu-item input:focus{border:1px solid var(--primary)}
- .menu-item input[type="color"]{width:100%;height:45px;border:none;border-radius:10px;cursor:pointer}
-
- .tabs{display:flex;background:var(--topbar);backdrop-filter:blur(10px);position:sticky;top:60px;z-index:40;border-bottom:1px solid #222}
- .tab{flex:1;padding:15px;text-align:center;cursor:pointer;font-weight:400;position:relative;color:#888}
- .tab.active{color:var(--primary)}
- .tab.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:2px;background:var(--primary);border-radius:2px}
-
- .page{display:none;height:calc(100vh - 60px - 52px)}
- .page.active{display:block}
-  #chatList{height:100%;overflow-y:auto;padding:12px}
- .chat-item{padding:14px;background:var(--card);backdrop-filter:blur(10px);margin-bottom:10px;border-radius:14px;cursor:pointer;border:1px solid #222;transition:0.2s}
- .chat-item:hover{background:#1a1a1a}
-
-  #chatBox{height:calc(100vh - 60px - 70px);overflow-y:auto;padding:14px;background:transparent;padding-bottom:80px}
- .msg{max-width:78%;padding:12px 16px;margin:10px 0;border-radius:16px;clear:both;word-wrap:break-word;font-size:14px;line-height:1.5}
- .msg b{display:block;font-size:12px;margin-bottom:4px;color:var(--primary)}
- .msg.me{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;float:right;border-bottom-right-radius:4px}
- .msg.other{background:var(--card);backdrop-filter:blur(10px);float:left;border:1px solid #222;border-bottom-left-radius:4px}
- .msg img,.msg video{max-width:240px;border-radius:12px;margin-top:8px}
-
- .chat-input{position:fixed;bottom:0;left:0;width:100%;display:flex;padding:10px 12px;background:#0d0d0dee;backdrop-filter:blur(15px);gap:10px;align-items:center;border-top:1px solid #222}
- .chat-input input{flex:1;padding:13px 18px;border-radius:25px;border:1px solid #2a2a2a;background:#1a1a1a;color:var(--text);outline:none}
- .chat-input button{padding:13px 15px;border:none;background:var(--primary);border-radius:50%;color:#000;cursor:pointer;font-size:18px;font-weight:600}
- .chat-input span{font-size:20px;cursor:pointer;padding:5px}
-
- .status-list{padding:12px;height:100%;overflow-y:auto}
- .status-item{display:flex;align-items:center;gap:14px;padding:14px;background:var(--card);backdrop-filter:blur(10px);margin-bottom:10px;border-radius:14px;border:1px solid #222}
- .status-item img{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--primary);padding:2px}
- .footer{padding:24px;text-align:center;font-size:11px;color:#555}
- .btn-save{width:100%;padding:14px;background:linear-gradient(135deg,#00ff88,#00cc6a);border:none;border-radius:12px;color:#000;font-weight:600;margin-top:12px;cursor:pointer;font-size:15px}
+.topbar{height:60px;background:var(--topbar);backdrop-filter:blur(10px);display:flex;align-items:center;padding:0 16px;gap:14px;position:sticky;top:0;z-index:50;border-bottom:1px solid #222}
+.topbar h1{font-size:19px;font-weight:600;flex:1;letter-spacing:0.5px}
+.sidebar{position:fixed;left:-320px;top:0;width:320px;height:100%;background:#0a0a0aee;backdrop-filter:blur(20px);z-index:100;transition:0.4s cubic-bezier(.2,.8,.2,1);padding:24px;overflow-y:auto;border-right:1px solid #222}
+.sidebar.open{left:0}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000d;display:none;z-index:99}
+.overlay.show{display:block}
+.menu-item{padding:14px 0;border-bottom:1px solid #1a1a1a}
+.menu-item label{display:block;margin-bottom:8px;font-size:13px;color:#aaa}
+.menu-item input{width:100%;padding:12px;background:#1a1a1a;border:1px solid #2a2a2a;color:var(--text);border-radius:10px;outline:none}
+.menu-item input:focus{border:1px solid var(--primary)}
+.menu-item input[type="color"]{height:45px;cursor:pointer}
+.tabs{display:flex;background:var(--topbar);backdrop-filter:blur(10px);position:sticky;top:60px;z-index:40;border-bottom:1px solid #222}
+.tab{flex:1;padding:15px;text-align:center;cursor:pointer;color:#888;position:relative}
+.tab.active{color:var(--primary)}
+.tab.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:2px;background:var(--primary)}
+.page{display:none;height:calc(100vh - 60px - 52px)}
+.page.active{display:block}
+  #chatList,#contactList{height:100%;overflow-y:auto;padding:12px}
+.chat-item,.contact-item{padding:14px;background:var(--card);backdrop-filter:blur(10px);margin-bottom:10px;border-radius:14px;cursor:pointer;border:1px solid #222;display:flex;align-items:center;gap:12px;transition:0.2s}
+.chat-item:hover,.contact-item:hover{background:#1a1a1a}
+.chat-item img,.contact-item img{width:45px;height:45px;border-radius:50%;object-fit:cover;border:1px solid var(--primary)}
+  #chatBox{height:calc(100vh - 60px - 70px);overflow-y:auto;padding:14px;padding-bottom:80px}
+.msg{max-width:78%;padding:12px 16px;margin:10px 0;border-radius:16px;clear:both;font-size:14px;line-height:1.5}
+.msg b{display:block;font-size:12px;margin-bottom:4px;color:var(--primary)}
+.msg.me{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;float:right;border-bottom-right-radius:4px}
+.msg.other{background:var(--card);float:left;border:1px solid #222;border-bottom-left-radius:4px}
+.msg img,.msg video{max-width:240px;border-radius:12px;margin-top:8px}
+.chat-input{position:fixed;bottom:0;left:0;width:100%;display:flex;padding:10px;background:#0d0d0dee;backdrop-filter:blur(15px);gap:10px;align-items:center;border-top:1px solid #222}
+.chat-input input{flex:1;padding:13px 18px;border-radius:25px;border:1px solid #2a2a2a;background:#1a1a1a;color:var(--text)}
+.chat-input button{padding:13px 15px;border:none;background:var(--primary);border-radius:50%;color:#000;font-weight:600;cursor:pointer}
+.status-list{padding:12px;height:100%;overflow-y:auto}
+.status-item{display:flex;align-items:center;gap:14px;padding:14px;background:var(--card);margin-bottom:10px;border-radius:14px;border:1px solid #222}
+.status-item img{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
+.footer{padding:24px;text-align:center;font-size:11px;color:#555}
+.btn-save{width:100%;padding:14px;background:linear-gradient(135deg,#00ff88,#00cc6a);border:none;border-radius:12px;color:#000;font-weight:600;margin-top:12px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -64,38 +56,42 @@
 
 <div class="overlay" onclick="toggleSidebar()"></div>
 <div class="sidebar" id="sidebar">
-  <h3 style="margin-bottom:20px;font-weight:600">Pengaturan</h3>
-  <div class="menu-item"><label>Akun Email</label><input id="email" type="text" placeholder="email kamu"></div>
-  <div class="menu-item"><label>Password</label><input id="pass" type="password" placeholder="set password"></div>
-  <div class="menu-item"><label>Nama Profil</label><input id="nama" type="text" placeholder="Nama kamu"></div>
+  <h3 style="margin-bottom:20px">Pengaturan</h3>
+  <div class="menu-item"><label>ID Kamu - Bagikan ke teman</label><input id="myID" readonly><button class="btn-save" onclick="copyID()">Salin ID</button></div>
+  <div class="menu-item"><label>Nama Profil</label><input id="nama" placeholder="Nama kamu"></div>
+  <div class="menu-item"><label>Email</label><input id="email" type="text" placeholder="email kamu"></div>
   <div class="menu-item"><label>Foto Profil</label><input type="file" id="fotoProfil" accept="image/*"><img id="previewFoto" style="width:70px;height:70px;border-radius:50%;margin-top:10px;display:none;border:2px solid var(--primary)"></div>
   <div class="menu-item"><label>Warna Background</label><input type="color" id="bgColor" value="#070707"></div>
   <div class="menu-item"><label>Warna Topbar</label><input type="color" id="topColor" value="#0d0d0d"></div>
-  <div class="menu-item"><label>Warna Teks/Accent</label><input type="color" id="textColor" value="#00ff88"></div>
-  <div class="menu-item"><label>Tambah Kontak ID</label><input id="addContact" type="text" placeholder="ID Kontak"><button class="btn-save" onclick="tambahKontak()">Tambah Kontak</button></div>
+  <div class="menu-item"><label>Warna Accent</label><input type="color" id="textColor" value="#00ff88"></div>
+  <div class="menu-item"><label>Tambah Kontak ID</label><input id="addContact" placeholder="Tempel ID teman"><button class="btn-save" onclick="tambahKontak()">Tambah</button></div>
   <button class="btn-save" onclick="simpanProfil()">Simpan Pengaturan</button>
-  <div class="menu-item" style="font-size:13px">Versi: 1.0.1 Elegan<br>Lisensi: Link-a21 Development 2026</div>
-  <div class="footer">©Link-a21 development. Web App | agency | independent. 2026</div>
+  <div class="footer">©Link-a21 Development 2026</div>
 </div>
 
 <div class="tabs">
   <div class="tab active" onclick="openTab('chat')">Pesan</div>
+  <div class="tab" onclick="openTab('kontak')">Kontak</div>
   <div class="tab" onclick="openTab('status')">Status</div>
 </div>
 
 <div id="chat" class="page active">
-  <div id="chatList"><div class="chat-item" onclick="bukaChat('chat_umum')">🔥 Grup Umum Pessadtz</div></div>
+  <div id="chatList"><div class="chat-item" onclick="bukaChat('chat_umum')"><img src="https://i.imgur.com/8Km9tLL.png"><div><b>Grup Umum</b><br><span style="font-size:12px;color:#888">Chat bareng semua</span></div></div></div>
   <div id="chatBox" style="display:none"></div>
   <div class="chat-input" id="chatInput" style="display:none">
     <span onclick="document.getElementById('fileUpload').click()">📎</span>
     <input type="file" id="fileUpload" accept="image/*,video/*" style="display:none">
-    <input id="pesan" placeholder="Ketik pesan elegan..." onfocus="scrollKeBawah()">
+    <input id="pesan" placeholder="Ketik pesan..." onkeydown="if(event.key=='Enter')kirim()">
     <button onclick="kirim()">➤</button>
   </div>
 </div>
 
+<div id="kontak" class="page">
+  <div id="contactList"></div>
+</div>
+
 <div id="status" class="page">
-  <button onclick="document.getElementById('statusUpload').click()" style="margin:12px;padding:14px;width:calc(100% - 24px);background:linear-gradient(135deg,#00ff88,#00cc6a);border:none;border-radius:14px;color:#000;font-weight:600">+ Upload Status</button>
+  <button onclick="document.getElementById('statusUpload').click()" class="btn-save" style="margin:12px;width:calc(100% - 24px)">+ Upload Status</button>
   <input type="file" id="statusUpload" accept="image/*,video/*" style="display:none">
   <div class="status-list" id="statusList"></div>
 </div>
@@ -103,7 +99,7 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, push, onChildAdded, set, get, child } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, push, onChildAdded, set, get, child, onValue, off } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
 const firebaseConfig = {
@@ -116,46 +112,43 @@ const firebaseConfig = {
   appId: "1:434720605172:web:86b575d150d6b161d1efa1",
   measurementId: "G-05QGZPGR6F"
 };
-
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getDatabase(app);
-const storage = getStorage(app);
-let currentUser = "User_"+Math.floor(Math.random()*1000);
-let currentChat = "chat_umum";
+const auth = getAuth(app); const db = getDatabase(app); const storage = getStorage(app);
 let userId = localStorage.getItem('uid') || Date.now(); localStorage.setItem('uid', userId);
+let currentUser = "User_"+userId; let currentChat = "chat_umum"; let chatListener = null;
 
-signInAnonymously(auth).then(()=>{loadChat(); loadProfil(); loadStatus();});
+document.getElementById('myID').value = userId;
+signInAnonymously(auth).then(()=>{loadKontak(); loadStatus(); loadProfil(); set(ref(db,'users/'+userId+'/online'),true)});
 
-// SIDEBAR + TEMA
+// SIDEBAR + TEMA FIX
 window.toggleSidebar = ()=>{document.getElementById('sidebar').classList.toggle('open');document.querySelector('.overlay').classList.toggle('show')}
 window.openTab = (t)=>{document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(t).classList.add('active');event.target.classList.add('active')}
 ['bgColor','topColor','textColor'].forEach(id=>{
   document.getElementById(id).oninput=e=>{
-    document.documentElement.style.setProperty('--bg', id=='bgColor'?e.target.value:'');
-    document.documentElement.style.setProperty('--topbar', id=='topColor'?e.target.value:'');
-    document.documentElement.style.setProperty('--primary', id=='textColor'?e.target.value:'');
-    localStorage.setItem(id, e.target.value);
+    const val = e.target.value;
+    if(id=='bgColor') document.documentElement.style.setProperty('--bg', val);
+    if(id=='topColor') document.documentElement.style.setProperty('--topbar', val);
+    if(id=='textColor') document.documentElement.style.setProperty('--primary', val);
+    localStorage.setItem(id, val);
   }
-  document.getElementById(id).value = localStorage.getItem(id) || document.getElementById(id).value;
-  document.getElementById(id).dispatchEvent(new Event('input'));
+  const saved = localStorage.getItem(id);
+  if(saved){document.getElementById(id).value = saved; document.getElementById(id).dispatchEvent(new Event('input'));}
 })
 
-// SIMPAN PROFIL
+// SIMPAN PROFIL FIX
 window.simpanProfil = async ()=>{
-  let nama = document.getElementById('nama').value;
-  let email = document.getElementById('email').value;
+  let nama = document.getElementById('nama').value.trim();
+  let email = document.getElementById('email').value.trim();
   let file = document.getElementById('fotoProfil').files[0];
   let fotoURL = "";
   if(file){
-    const storageRef = sRef(storage, 'profil/'+userId+'_'+file.name);
+    const storageRef = sRef(storage, 'profil/'+userId);
     await uploadBytes(storageRef, file);
     fotoURL = await getDownloadURL(storageRef);
     document.getElementById('previewFoto').src=fotoURL;document.getElementById('previewFoto').style.display='block';
   }
-  set(ref(db, 'users/'+userId), {nama, email, foto:fotoURL});
-  localStorage.setItem('nama', nama); currentUser = nama || currentUser;
-  alert('✅ Profil tersimpan');
+  set(ref(db, 'users/'+userId), {nama:nama||currentUser, email, foto:fotoURL, id:userId});
+  currentUser = nama||currentUser; alert('✅ Profil tersimpan');
 }
 function loadProfil(){
   get(child(ref(db), 'users/'+userId)).then(snap=>{
@@ -168,9 +161,29 @@ function loadProfil(){
   })
 }
 
-// CHAT
+// KONTAK + CHAT SATU SATU FIX
+window.tambahKontak = ()=>{let id = document.getElementById('addContact').value.trim(); if(id && id!=userId){set(ref(db, 'kontak/'+userId+'/'+id), true); set(ref(db, 'kontak/'+id+'/'+userId), true); alert('Kontak ditambahkan')}else{alert('ID tidak valid')}}
+function loadKontak(){
+  onValue(ref(db,'kontak/'+userId),snap=>{
+    document.getElementById('contactList').innerHTML='';
+    snap.forEach(childSnap=>{
+      let idTeman=childSnap.key;
+      get(child(ref(db),'users/'+idTeman)).then(s=>{let d=s.val();
+        document.getElementById('contactList').innerHTML+=`<div class="contact-item" onclick="bukaChatPrivate('${idTeman}')"><img src="${d?.foto||'https://i.imgur.com/8Km9tLL.png'}"><div><b>${d?.nama||'User '+idTeman}</b><br><span style="font-size:12px;color:#888">${d?.email||''}</span></div></div>`;
+      })
+    })
+  })
+}
+window.bukaChatPrivate=(idTeman)=>{
+  let chatID = userId < idTeman? `chat_${userId}_${idTeman}` : `chat_${idTeman}_${userId}`;
+  bukaChat(chatID);
+}
+
+// CHAT FIX: HAPUS LISTENER LAMA
 function loadChat(){
-  onChildAdded(ref(db, currentChat), snap=>{
+  if(chatListener) off(ref(db, currentChat), 'child_added', chatListener); // hapus listener lama
+  document.getElementById('chatBox').innerHTML='';
+  chatListener = onChildAdded(ref(db, currentChat), snap=>{
     const m=snap.val();
     let content = m.text || '';
     if(m.file) content += `<br>${m.file.includes('.mp4')?`<video src="${m.file}" controls></video>`:`<img src="${m.file}">`}`;
@@ -183,27 +196,30 @@ window.bukaChat = (id)=>{
   document.getElementById('chatList').style.display='none';
   document.getElementById('chatBox').style.display='block';
   document.getElementById('chatInput').style.display='flex';
-  document.getElementById('chatBox').innerHTML='';
-  loadChat(); toggleSidebar(); history.pushState({page:'chat'},'','');
+  loadChat();
+  if(document.getElementById('sidebar').classList.contains('open')) toggleSidebar(); // auto tutup sidebar
+  history.pushState({page:'chat'},'','');
 }
 window.goHome = ()=>{
+  if(chatListener) off(ref(db, currentChat), 'child_added', chatListener);
   document.getElementById('chatBox').style.display='none';
   document.getElementById('chatInput').style.display='none';
   document.getElementById('chatList').style.display='block';
 }
-function scrollKeBawah(){setTimeout(()=>{document.getElementById('chatBox').scrollTop = 99999},100);}
+function scrollKeBawah(){setTimeout(()=>{document.getElementById('chatBox').scrollTop = 99999},100)}
 window.kirim = async ()=>{
-  let txt = document.getElementById('pesan').value;
+  let txt = document.getElementById('pesan').value.trim(); // trim biar ga kirim spasi
   let file = document.getElementById('fileUpload').files[0];
   let fileURL = "";
   if(file){
     const storageRef = sRef(storage, 'files/'+Date.now()+'_'+file.name);
     await uploadBytes(storageRef, file);
     fileURL = await getDownloadURL(storageRef);
+    document.getElementById('fileUpload').value = ""; // reset
   }
   if(txt || fileURL){
     push(ref(db, currentChat), {user:currentUser, text:txt, file:fileURL, time:Date.now()});
-    document.getElementById('pesan').value=""; scrollKeBawah();
+    document.getElementById('pesan').value="";
   }
 }
 
@@ -222,8 +238,7 @@ function loadStatus(){
   })
 }
 
-// KONTAK + BACK BUTTON
-window.tambahKontak = ()=>{let id = document.getElementById('addContact').value; if(id) set(ref(db, 'kontak/'+userId+'/'+id), true); alert('Permintaan terkirim');}
+window.copyID = ()=>{navigator.clipboard.writeText(userId);alert('ID disalin: '+userId)}
 window.addEventListener('popstate', ()=>{goHome();})
 </script>
 </body>
