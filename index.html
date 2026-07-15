@@ -2,105 +2,270 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>PessadtzChat</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>PESSADTZ CHAT v4.3 (fixed UI)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  :root{--primary:#00ff88;--bg:#070707;--card:#111111aa;--topbar:#0d0d0d;--text:#e0e0e0}
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-  body{background:var(--bg);color:var(--text);height:100vh;overflow:hidden;background-image: radial-gradient(circle at 20% 20%, #00ff8811 0%, transparent 50%);}
- .topbar{height:60px;background:var(--topbar);backdrop-filter:blur(10px);display:flex;align-items:center;padding:0 16px;gap:14px;position:sticky;top:0;z-index:50;border-bottom:1px solid #222}
- .topbar h1{font-size:19px;font-weight:600;flex:1;letter-spacing:0.5px}
- .topbar span{font-size:22px;cursor:pointer}
- .sidebar{position:fixed;left:-320px;top:0;width:320px;height:100%;background:#0a0a0aee;backdrop-filter:blur(20px);z-index:100;transition:0.4s cubic-bezier(.2,.8,.2,1);padding:24px;overflow-y:auto;border-right:1px solid #222}
- .sidebar.open{left:0}
- .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000d;display:none;z-index:99}
- .overlay.show{display:block}
- .menu-item{padding:14px 0;border-bottom:1px solid #1a1a1a}
- .menu-item label{display:block;margin-bottom:8px;font-size:13px;color:#aaa}
- .menu-item input{width:100%;padding:12px;background:#1a1a1a;border:1px solid #2a2a2a;color:var(--text);border-radius:10px;outline:none}
- .menu-item input:focus{border:1px solid var(--primary)}
- .menu-item input[type="color"]{height:45px;cursor:pointer}
- .tabs{display:flex;background:var(--topbar);backdrop-filter:blur(10px);position:sticky;top:60px;z-index:40;border-bottom:1px solid #222}
- .tab{flex:1;padding:15px;text-align:center;cursor:pointer;color:#888;position:relative;font-weight:500}
- .tab.active{color:var(--primary)}
- .tab.active::after{content:'';position:absolute;bottom:0;left:20%;width:60%;height:2px;background:var(--primary)}
- .page{display:none;height:calc(100vh - 60px - 52px)}
- .page.active{display:block}
-  #chatList,#contactList{height:100%;overflow-y:auto;padding:12px}
- .chat-item,.contact-item{padding:14px;background:var(--card);backdrop-filter:blur(10px);margin-bottom:10px;border-radius:14px;cursor:pointer;border:1px solid #222;display:flex;align-items:center;gap:12px;transition:0.2s}
- .chat-item:hover,.contact-item:hover{background:#1a1a1a}
- .chat-item img,.contact-item img{width:45px;height:45px;border-radius:50%;object-fit:cover;border:1px solid var(--primary)}
-  #chatBox{height:calc(100vh - 60px - 70px);overflow-y:auto;padding:14px;padding-bottom:80px}
- .msg{max-width:78%;padding:12px 16px;margin:10px 0;border-radius:16px;clear:both;font-size:14px;line-height:1.5}
- .msg b{display:block;font-size:12px;margin-bottom:4px;color:var(--primary)}
- .msg.me{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;float:right;border-bottom-right-radius:4px}
- .msg.other{background:var(--card);float:left;border:1px solid #222;border-bottom-left-radius:4px}
- .msg img,.msg video{max-width:240px;border-radius:12px;margin-top:8px}
- .chat-input{position:fixed;bottom:0;left:0;width:100%;display:flex;padding:10px;background:#0d0d0dee;backdrop-filter:blur(15px);gap:10px;align-items:center;border-top:1px solid #222}
- .chat-input input{flex:1;padding:13px 18px;border-radius:25px;border:1px solid #2a2a2a;background:#1a1a1a;color:var(--text);outline:none}
- .chat-input button{padding:13px 15px;border:none;background:var(--primary);border-radius:50%;color:#000;font-weight:600;cursor:pointer;font-size:16px}
- .status-list{padding:12px;height:100%;overflow-y:auto}
- .status-item{display:flex;align-items:center;gap:14px;padding:14px;background:var(--card);margin-bottom:10px;border-radius:14px;border:1px solid #222}
- .status-item img{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid var(--primary)}
- .footer{padding:24px;text-align:center;font-size:11px;color:#555}
- .btn-save{width:100%;padding:14px;background:linear-gradient(135deg,#00ff88,#00cc6a);border:none;border-radius:12px;color:#000;font-weight:600;margin-top:12px;cursor:pointer;font-size:15px}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+:root { 
+  --bg: #0E1621; 
+  --bg-card: #17212B; 
+  --text: #FFFFFF; 
+  --accent: #5288C1; 
+  --green: #2B5278; 
+  --danger: #E74C3C; 
+  --icon: #5288C1; 
+  --bubble-me: #5288C1; 
+  --bubble-other: #17212B; 
+  --radius: 12px; 
+}
+
+body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* Animasi Masuk Baru */
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ripple { 0%{transform:scale(0);opacity:1} 100%{transform:scale(4);opacity:0} }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+
+/* Layout Presisi */
+.topbar { background: var(--green); padding: 14px 16px; display: flex; align-items: center; gap: 15px; position: fixed; top:0; width:100%; z-index:99; box-shadow:0 2px 10px rgba(0,0,0,.2); }
+.topbar h3 { font-size: 18px; flex:1; font-weight:600; display: flex; align-items: center; gap: 8px; }
+.topbar i { font-size: 20px; cursor: pointer; color: #FFF; transition:.2s; }
+.topbar i:hover{ transform:scale(1.1); }
+
+.tabs { display:flex; position:fixed; top:53px; width:100%; background:var(--green); z-index:98; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.tab { flex:1; text-align:center; padding:14px; cursor:pointer; opacity:0.6; font-weight:500; transition:.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.tab.active { opacity:1; border-bottom:3px solid var(--accent); }
+
+/* Konten Utama dengan Efek Animasi Masuk */
+.page { min-height: 100vh; padding-top: 120px; padding-bottom: 80px; overflow-y: auto; scroll-behavior: smooth; box-sizing: border-box; }
+.page:not(.hidden) { animation: pageFadeIn 0.4s ease-out forwards; }
+
+.login-page { display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; background: linear-gradient(135deg, var(--green), var(--bg)); height:100vh; }
+.halo-text { font-size: 32px; font-weight: 700; margin-bottom: 20px; }
+.halo-text span { color: var(--accent); }
+.login-box { width: 100%; max-width: 400px; background:var(--bg-card); padding:24px; border-radius:var(--radius); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
+.chat-item { display:flex; gap:14px; padding:14px 16px; border-bottom:1px solid rgba(255,255,255,0.03); cursor:pointer; align-items:center; transition:.2s; }
+.chat-item:hover { background: var(--bg-card); padding-left: 20px; }
+.avatar { width:48px; height:48px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; font-weight:700; overflow:hidden; flex-shrink:0; position:relative; color: #FFF; }
+.avatar img { width:100%; height:100%; object-fit:cover; }
+.status-dot { position:absolute; bottom:1px; right:1px; width:12px; height:12px; background:#25D366; border-radius:50%; border:2px solid var(--bg); }
+.chat-info { flex:1; overflow:hidden; display: flex; flex-direction: column; gap: 2px; }
+.last-msg { font-size:13px; opacity:0.6; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* Room Chat & Bubble Chat Presisi */
+#chatRoom { padding-top: 65px; padding-bottom: 75px; }
+.chat-box { display:flex; flex-direction:column; gap:12px; padding:16px; width: 100%; box-sizing: border-box; }
+.bubble { padding:10px 14px; border-radius:16px; max-width:75%; word-wrap: break-word; color: #FFF; line-height: 1.4; font-size: 15px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.bubble.me { background: var(--bubble-me); align-self:flex-end; border-bottom-right-radius:4px; }
+.bubble.other { background: var(--bubble-other); align-self:flex-start; border-bottom-left-radius:4px; }
+.bubble img, .bubble video { max-width:100%; border-radius:10px; margin-top:6px; display: block; }
+.bubble audio { max-width:100%; margin-top:6px; display: block; }
+
+.input-area { position: fixed; bottom:0; left:0; width:100%; background:var(--bg-card); padding:10px 14px; display:flex; gap:8px; align-items:center; z-index: 99; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); }
+.input-area input { flex:1; background:#242F3D; border:none; padding:12px 16px; border-radius:22px; color:var(--text); outline:none; font-size: 15px; }
+.btn { background:var(--accent); border:none; width:42px; height:42px; border-radius:50%; color:#fff; font-size:16px; cursor:pointer; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:.2s; }
+.btn:active::after{ content:''; position:absolute; top:50%; left:50%; width:100%; height:100%; background:rgba(255,255,255,.3); border-radius:50%; transform:translate(-50%,-50%) scale(0); animation:ripple.6s; }
+.btn.recording { background: var(--danger); animation:pulse 1s infinite; }
+
+.section-title { padding:16px 16px 6px; font-size:12px; opacity:0.5; font-weight:600; letter-spacing:1px; text-transform: uppercase; }
+.profil-header { text-align:center; padding:30px 20px; background:var(--bg-card); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.profil-avatar { width:100px; height:100px; margin:0 auto 15px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:40px; position:relative; border:3px solid var(--accent); }
+.edit-foto { position:absolute; bottom:0; right:0; background:var(--accent); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; cursor:pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+
+.admin-badge { background: var(--danger); padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight:600; margin-left:5px; vertical-align: middle; }
+.color-picker { display:flex; gap:10px; margin-top:5px; flex-wrap:wrap; padding:8px 16px 16px 16px; }
+.color-box { width:38px; height:38px; border-radius:8px; cursor:pointer; border:2px solid transparent; transition:.2s; }
+.color-box:hover{ transform:scale(1.05); border-color:#fff; }
+
+input[type="text"], input[type="tel"], input[type="datetime-local"], textarea, select { width:100%; padding:12px 14px; background:#242F3D; border:1px solid rgba(255,255,255,0.1); border-radius:8px; color:#fff; margin:8px 0; outline:none; transition:.3s; font-size: 14px; }
+input:focus, textarea:focus{ border-color:var(--accent); }
+.btn-login { width:100%; padding:12px; border-radius:8px; border:none; background: var(--accent); color:#fff; font-size:15px; font-weight:600; cursor:pointer; transition:.3s; margin-top: 10px; }
+
+.card-presisi{ background:var(--bg-card); padding:16px; border-radius:var(--radius); margin:12px 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+.version-box { text-align:center; padding:30px 20px; opacity:0.4; font-size:11px; line-height: 1.6; }
+
+.hidden { display:none !important; }
+
+/* Menu Utama FAB Modern */
+.fab-menu { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
+.fab-btn { width:52px; height:52px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:20px; cursor:pointer; color: #FFF; box-shadow:0 4px 12px rgba(0,0,0,.4); transition:.3s; }
+.fab-btn:hover{ transform:scale(1.05); }
+.fab-options { position: absolute; bottom: 65px; right: 0; display: none; flex-direction: column; gap: 8px; width: 180px; }
+.fab-options.active { display: flex; animation: pageFadeIn .25s ease-out forwards; }
+.fab-option { background: var(--bg-card); padding: 10px 14px; border-radius: 20px; display: flex; align-items: center; gap: 10px; cursor:pointer; border:1px solid rgba(255,255,255,0.05); transition:.2s; color: var(--text); font-size: 14px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+.fab-option:hover{ background:var(--accent); transform:translateX(-4px); color: #FFF; }
+
+.switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #242F3D; transition: .3s; border-radius: 22px; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--accent); }
+input:checked + .slider:before { transform: translateX(18px); }
+
+  body.no-sidebar .fab-menu { display: none!important; }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <span onclick="toggleSidebar()">☰</span>
-  <h1 id="logo">PessadtzChat</h1>
-  <span onclick="goHome()">link-A</span>
-</div>
-
-<div class="overlay" onclick="toggleSidebar()"></div>
-<div class="sidebar" id="sidebar">
-  <h3 style="margin-bottom:20px">Pengaturan</h3>
-  <div class="menu-item"><label>ID Kamu - Bagikan ke teman</label><input id="myID" readonly><button class="btn-save" onclick="copyID()">Salin ID</button></div>
-  <div class="menu-item"><label>Nama Profil</label><input id="nama" placeholder="Nama kamu"></div>
-  <div class="menu-item"><label>Email</label><input id="email" type="text" placeholder="email kamu"></div>
-  <div class="menu-item"><label>Foto Profil</label><input type="file" id="fotoProfil" accept="image/*"><img id="previewFoto" style="width:70px;height:70px;border-radius:50%;margin-top:10px;display:none;border:2px solid var(--primary)"></div>
-  <div class="menu-item"><label>Warna Background</label><input type="color" id="bgColor" value="#070707"></div>
-  <div class="menu-item"><label>Warna Topbar</label><input type="color" id="topColor" value="#0d0d0d"></div>
-  <div class="menu-item"><label>Warna Accent</label><input type="color" id="textColor" value="#00ff88"></div>
-  <div class="menu-item"><label>Tambah Kontak ID</label><input id="addContact" placeholder="Tempel ID teman"><button class="btn-save" onclick="tambahKontak()">Tambah</button></div>
-  <button class="btn-save" onclick="simpanProfil()">Simpan Pengaturan</button>
-  <div class="footer">©Link-a21 Development 2026</div>
-</div>
-
-<div class="tabs">
-  <div class="tab active" onclick="openTab('chat', event)">Pesan</div>
-  <div class="tab" onclick="openTab('kontak', event)">Kontak</div>
-  <div class="tab" onclick="openTab('status', event)">Status</div>
-</div>
-
-<div id="chat" class="page active">
-  <div id="chatList"><div class="chat-item" onclick="bukaChat('chat_umum')"><img src="https://i.imgur.com/8Km9tLL.png"><div><b>Grup Umum</b><br><span style="font-size:12px;color:#888">Chat bareng semua</span></div></div></div>
-  <div id="chatBox" style="display:none"></div>
-  <div class="chat-input" id="chatInput" style="display:none">
-    <span onclick="document.getElementById('fileUpload').click()">📎</span>
-    <input type="file" id="fileUpload" accept="image/*,video/*" style="display:none">
-    <input id="pesan" placeholder="Ketik pesan..." onkeydown="if(event.key=='Enter')kirim()">
-    <button onclick="kirim()">➤</button>
+<!-- LOGIN -->
+<div id="loginPage" class="login-page page">
+  <div style="text-align:center;">
+    <div class="halo-text">Hallo <span style="color:var(--accent)">Pessadtz</span> 👋</div>
+    <div class="login-box">
+      <input id="loginNo" placeholder="No HP" type="tel" style="width:100%; padding:12px; margin-bottom:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:#242F3D; color:#fff">
+      <input id="loginNama" placeholder="Nama Anda" type="text" style="width:100%; padding:12px; margin-bottom:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:#242F3D; color:white">
+      <button class="btn-login" onclick="login()">Masuk</button>
+    </div>
   </div>
 </div>
 
-<div id="kontak" class="page"><div id="contactList"></div></div>
+<!-- HOME -->
+<div id="homePage" class="page hidden">
+  <div class="topbar"><h3>PESSADTZ CHAT</h3></div>
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('chat', event)"><i class="fas fa-comments"></i> CHAT</div>
+    <div class="tab" onclick="switchTab('status', event)"><i class="fas fa-circle"></i> STATUS</div>
+    <div class="tab" onclick="switchTab('kegiatan', event)"><i class="fas fa-calendar-alt"></i> ACARA</div>
+  </div>
 
-<div id="status" class="page">
-  <button onclick="document.getElementById('statusUpload').click()" class="btn-save" style="margin:12px;width:calc(100% - 24px)">+ Upload Status</button>
-  <input type="file" id="statusUpload" accept="image/*,video/*" style="display:none">
-  <div class="status-list" id="statusList"></div>
+  <div id="tabChat" style="padding-top:8px;">
+    <div class="chat-item" onclick="bukaGemini()">
+      <div class="avatar"><i class="fas fa-robot"></i></div>
+      <div style="flex:1"><b>AI ASISTEN GEMINI</b><div class="last-msg" style="opacity:.6; font-size:13px">Langsung buka Gemini</div></div>
+    </div>
+    <div id="listChat"></div>
+  </div>
+
+  <div id="tabStatus" class="hidden">
+    <div class="chat-item" onclick="uploadStatus()">
+      <div class="avatar"><i class="fas fa-plus"></i></div>
+      <div style="flex:1"><b>Status Saya</b><div class="last-msg" style="opacity:.6; font-size:13px">Klik untuk posting foto/video</div></div>
+    </div>
+    <div id="listStatus"></div>
+  </div>
+
+  <div id="tabKegiatan" class="hidden">
+    <div class="section-title">KEGIATAN & ACARA MENDATANG</div>
+    <div id="listKegiatanUser"></div>
+  </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getDatabase, ref, push, onChildAdded, set, get, child, onValue, off, query, orderByChild } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import { getStorage, ref as sRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+<!-- KONTAK -->
+<div id="kontakPage" class="page hidden">
+  <div class="topbar"><i class="fas fa-arrow-left" style="cursor:pointer" onclick="history.back()"></i><h3 style="margin-left:8px">Kontak</h3></div>
+  <div style="padding:16px">
+    <div id="listKontak" class="card-presisi"></div>
+  </div>
+</div>
 
+<!-- PROFIL -->
+<div id="profilPage" class="page hidden">
+  <div class="topbar"><i class="fas fa-arrow-left" style="cursor:pointer" onclick="history.back()"></i><h3 style="margin-left:8px">Profil</h3></div>
+  <div style="padding:16px">
+    <div class="profil-header card-presisi" style="text-align:center">
+      <div class="profil-avatar" id="avatarProfil"><i class="fas fa-user"></i><div style="position:absolute; bottom:-6px; right:-6px" class="edit-foto" onclick="ubahFoto()"><i class="fas fa-camera"></i></div></div>
+      <h2 id="namaProfil">Nama</h2><p id="noProfil" style="opacity:.6">0812</p>
+    </div>
+    <div class="card-presisi" style="margin-top:12px">
+      <div class="chat-item" onclick="editNama()"><i class="fas fa-edit"></i><div style="margin-left:10px"><b>Ubah Nama</b></div></div>
+    </div>
+  </div>
+  <input id="inputFoto" type="file" accept="image/*" style="display:none" onchange="uploadFotoProfil(event)">
+</div>
+
+<!-- SETTING -->
+<div id="settingPage" class="page hidden">
+  <div class="topbar"><i class="fas fa-arrow-left" style="cursor:pointer" onclick="history.back()"></i><h3 style="margin-left:8px">Pengaturan</h3></div>
+  <div style="padding:16px">
+    <div class="card-presisi">
+      <div class="section-title">AKUN</div>
+      <div class="chat-item" onclick="showProfil();"><i class="fas fa-user"></i><div style="margin-left:10px"><b>Profil Saya</b></div></div>
+      <div class="chat-item"><i class="fas fa-lock"></i><div style="margin-left:10px"><b>Privasi</b></div><label class="switch" style="margin-left:auto"><input type="checkbox" id="privasiToggle"><span class="slider"></span></label></div>
+    </div>
+
+    <div class="card-presisi" style="margin-top:12px">
+      <div class="section-title">TAMPILAN</div>
+      <div class="chat-item"><i class="fas fa-moon"></i><div style="margin-left:10px"><b>Mode Gelap</b></div><label class="switch" style="margin-left:auto"><input type="checkbox" id="darkToggle" checked onchange="toggleDark(this)"><span class="slider"></span></label></div>
+      <div style="margin-top:10px">
+        <p style="opacity:.8">Warna Background</p>
+        <div class="color-picker" style="display:flex; gap:8px">
+          <div class="color-box" style="background:#0E1621; width:36px; height:36px; border-radius:8px; cursor:pointer" onclick="gantiTema('#0E1621','#17212B')"></div>
+          <div class="color-box" style="background:#FFFFFF; width:36px; height:36px; border-radius:8px; cursor:pointer" onclick="gantiTema('#FFFFFF','#F0F0F0')"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="version-box" style="margin-top:12px; opacity:.6; text-align:center">Versi: 4.3<br><small>MANAGEMENT LINK-A DEVELOPMENT 2026</small></div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="adminPage" class="page hidden">
+  <div class="topbar"><i class="fas fa-arrow-left" style="cursor:pointer" onclick="history.back()"></i><h3 style="margin-left:8px">Panel Admin <span style="margin-left:8px; background:var(--danger); padding:2px 6px; border-radius:6px; font-size:12px">ADMIN</span></h3></div>
+  <div style="padding:16px">
+    <div class="card-presisi">
+      <div class="section-title">MANAJEMEN ADMIN</div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap">
+        <button class="btn-login" onclick="showUsers()">Lihat Pengguna</button>
+        <button class="btn-login" onclick="showHistori()">Histori Chat</button>
+        <button class="btn-login" onclick="showSettingAI()">Setting API Gemini</button>
+        <button class="btn-login" onclick="showKelolaKegiatan()">Kelola Kegiatan</button>
+      </div>
+    </div>
+    <div id="adminContent" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- CHAT ROOM -->
+<div id="chatRoom" class="page hidden">
+  <div class="topbar"><i class="fas fa-arrow-left" style="cursor:pointer" onclick="navigateTo('home')"></i><h3 id="namaChat" style="margin-left:8px">Chat</h3></div>
+
+  <div class="chat-box" id="chatBox" role="log" aria-live="polite"></div>
+
+  <div class="input-area" id="inputArea">
+    <label class="btn" title="Kirim media"><i class="fas fa-image"></i><input id="fileInput" type="file" accept="image/*,video/*" style="display:none" onchange="kirimMedia(event)"></label>
+    <textarea id="chatInput" placeholder="Tulis pesan... " oninput="autoResize(this)" onkeydown="handleInputKey(event)"></textarea>
+    <button class="btn" onclick="kirimPesan()" title="Kirim"><i class="fas fa-paper-plane"></i></button>
+    <button class="btn" id="btnMic" onmousedown="mulaiRekam()" onmouseup="selesaiRekam()" title="Rekam suara"><i class="fas fa-microphone"></i></button>
+  </div>
+</div>
+
+<!-- GEMINI (external) -->
+<div id="geminiPage" class="page hidden">
+  <div class="topbar"><i class="fas fa-arrow-left" style="cursor:pointer" onclick="history.back()"></i><h3 style="margin-left:8px">Gemini</h3></div>
+  <div style="padding:16px">
+    <div class="card-presisi">
+      <p style="opacity:.85">.</p>
+      <div style="display:flex; gap:8px;">
+        <button class="btn-login" onclick="openGemini()">Buka Gemini (tab baru)</button>
+        <button class="btn-login" onclick="embedGemini()">Tampilkan di halaman (iframe)</button>
+      </div>
+      <div id="geminiEmbed" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- FAB -->
+<div class="fab-menu">
+  <div class="fab-options" id="fabOptions"></div>
+  <div class="fab-btn" onclick="toggleFab()"><i class="fas fa-bars"></i></div>
+</div>
+
+<!-- Firebase compat -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
+
+<script>
+/* ================= CONFIG & INIT ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyCZ5X6Z-V8zfDRZ1oJQTyeElAaoeha52Eg",
   authDomain: "pessadtzchat.firebaseapp.com",
@@ -111,169 +276,440 @@ const firebaseConfig = {
   appId: "1:434720605172:web:86b575d150d6b161d1efa1",
   measurementId: "G-05QGZPGR6F"
 };
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app); const db = getDatabase(app); const storage = getStorage(app);
-let userId = localStorage.getItem('uid') || Date.now(); localStorage.setItem('uid', userId);
-let currentUser = "User_"+userId; let currentChat = "chat_umum"; let chatListener = null; let myFoto = "";
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const storage = firebase.storage();
 
-document.getElementById('myID').value = userId;
+const ADMIN_NO = "085882604880";
+const ADMIN_KEY = "Admin0612142521By";
 
-// BUG 1 FIX: LOAD SETELAH LOGIN SELESAI
-signInAnonymously(auth).then(()=>{
-  loadProfil();
-  loadKontak();
-  loadStatus();
-  set(ref(db,'users/'+userId+'/online'),true)
+/* ================= STATE ================= */
+let user = JSON.parse(localStorage.getItem('pessadtz_user'));
+let chatAktif = null;
+let listenerAktif = null;
+let mediaRecorder, audioChunks = [], streamGlobal = null;
+let activeDbListeners = []; // store {ref, event, handler} to off when navigate
+
+/* ================= UTIL ================= */
+function byId(id){return document.getElementById(id)}
+function pushDbListener(refPath, event, handler){
+  const ref = db.ref(refPath);
+  ref.on(event, handler);
+  activeDbListeners.push({ref, event, handler});
+  return ref;
+}
+function clearDbListeners(){
+  activeDbListeners.forEach(l=>{
+    try{ l.ref.off(l.event, l.handler) }catch(e){}
+  });
+  activeDbListeners = [];
+}
+function setNoSidebar(on){ document.body.classList.toggle('no-sidebar', !!on) }
+
+/* ================= NAVIGATION & HISTORY ================= */
+function navigateTo(page, options = {}) {
+  // central navigation: hide all pages then show page
+  clearDbListeners(); // turn off DB listeners when switching pages to avoid duplicates
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+  setNoSidebar(false);
+
+  switch(page){
+    case 'home': byId('homePage').classList.remove('hidden'); break;
+    case 'kontak': byId('kontakPage').classList.remove('hidden'); loadKontak(); break;
+    case 'profil': byId('profilPage').classList.remove('hidden'); loadProfil(); break;
+    case 'setting': byId('settingPage').classList.remove('hidden'); loadSetting(); break;
+    case 'admin': byId('adminPage').classList.remove('hidden'); break;
+    case 'chat':
+      byId('chatRoom').classList.remove('hidden');
+      setNoSidebar(true);
+      break;
+    case 'gemini':
+      byId('geminiPage').classList.remove('hidden');
+      setNoSidebar(true);
+      break;
+    default: byId('homePage').classList.remove('hidden'); break;
+  }
+  // push history so Android back/hardware back returns here
+  try { history.pushState({page}, '') } catch(e){}
+}
+
+window.addEventListener('popstate', (ev) => {
+  // when user clicks hardware back or browser back
+  const state = ev.state;
+  if(!state || state.page === 'home') {
+    // go to home
+    clearDbListeners();
+    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+    byId('homePage').classList.remove('hidden');
+    setNoSidebar(false);
+  } else if(state.page === 'chat' && chatAktif) {
+    navigateTo('chat');
+  } else {
+    navigateTo(state.page || 'home');
+  }
 });
 
-// SIDEBAR + TEMA
-window.toggleSidebar = ()=>{document.getElementById('sidebar').classList.toggle('open');document.querySelector('.overlay').classList.toggle('show')}
-window.openTab = (t, e)=>{document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(t).classList.add('active');e.target.classList.add('active')}
-['bgColor','topColor','textColor'].forEach(id=>{
-  document.getElementById(id).oninput=e=>{
-    const val = e.target.value;
-    if(id=='bgColor') document.documentElement.style.setProperty('--bg', val);
-    if(id=='topColor') document.documentElement.style.setProperty('--topbar', val);
-    if(id=='textColor') document.documentElement.style.setProperty('--primary', val);
-    localStorage.setItem(id, val);
-  }
-  const saved = localStorage.getItem(id);
-  if(saved){document.getElementById(id).value = saved; document.getElementById(id).dispatchEvent(new Event('input'));}
-})
+/* initialize history state */
+if(!history.state) history.replaceState({page:'home'}, '');
 
-// SIMPAN PROFIL
-document.getElementById('fotoProfil').onchange = e => {
-  let file = e.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {document.getElementById('previewFoto').src = ev.target.result; document.getElementById('previewFoto').style.display='block';}
-  reader.readAsDataURL(file);
+/* ================= UI helpers ================= */
+function toggleFab(){ byId('fabOptions').classList.toggle('active') }
+function switchTab(tab, ev){
+  ev && ev.preventDefault();
+  byId('tabChat').classList.add('hidden'); byId('tabStatus').classList.add('hidden'); byId('tabKegiatan').classList.add('hidden');
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  if(tab === 'chat'){ document.querySelectorAll('.tab')[0].classList.add('active'); byId('tabChat').classList.remove('hidden'); }
+  else if(tab === 'status'){ document.querySelectorAll('.tab')[1].classList.add('active'); byId('tabStatus').classList.remove('hidden'); }
+  else { document.querySelectorAll('.tab')[2].classList.add('active'); byId('tabKegiatan').classList.remove('hidden'); loadKegiatanUser(); }
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-window.simpanProfil = async ()=>{
-  let nama = document.getElementById('nama').value.trim();
-  let email = document.getElementById('email').value.trim();
-  let file = document.getElementById('fotoProfil').files[0];
-  let fotoURL = myFoto;
-  if(file){
-    const storageRef = sRef(storage, 'profil/'+userId+'_'+Date.now());
-    await uploadBytes(storageRef, file);
-    fotoURL = await getDownloadURL(storageRef);
-  }
-  await set(ref(db, 'users/'+userId), {nama:nama||currentUser, email, foto:fotoURL, id:userId});
-  currentUser = nama||currentUser; myFoto = fotoURL;
-  alert('✅ Profil tersimpan');
-  loadKontak();
+/* ================= AUTH / PROFILE ================= */
+function login(){
+  const no = byId('loginNo').value.trim();
+  const nama = byId('loginNama').value.trim();
+  if(!no || !nama) return alert('Isi No HP dan Nama dulu bos');
+  const isAdmin = (no === ADMIN_NO && nama === ADMIN_KEY);
+  const namaSimpan = isAdmin ? "Admin Pessadtz" : nama;
+  user = {id:no, nama:namaSimpan, isAdmin};
+  db.ref('users/'+no).set({nama:namaSimpan, isAdmin, online:true}).then(()=>{
+    localStorage.setItem('pessadtz_user', JSON.stringify(user));
+    setupSidebar();
+    navigateTo('home');
+    loadDaftarChat(); loadStatus();
+  });
 }
-
+function logout(){ if(user) db.ref('users/'+user.id).update({online:false}); localStorage.removeItem('pessadtz_user'); location.reload() }
 function loadProfil(){
-  get(child(ref(db), 'users/'+userId)).then(snap=>{
-    if(snap.exists()){
-      let d=snap.val();
-      document.getElementById('nama').value = d.nama || '';
-      document.getElementById('email').value = d.email || '';
-      if(d.foto){document.getElementById('previewFoto').src=d.foto;document.getElementById('previewFoto').style.display='block'; myFoto=d.foto; currentUser=d.nama}
-    }
-  })
+  if(!user) return;
+  db.ref('users/'+user.id).once('value').then(snap=>{
+    const d = snap.val(); if(!d) return;
+    byId('namaProfil').innerText = d.nama;
+    byId('noProfil').innerText = user.id;
+    if(d.foto) byId('avatarProfil').innerHTML = `<img src="${d.foto}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
+  });
 }
+function editNama(){ const n = prompt('Nama baru:', user.nama); if(n){ user.nama=n; db.ref('users/'+user.id).update({nama:n}); localStorage.setItem('pessadtz_user', JSON.stringify(user)); loadProfil(); } }
+function ubahFoto(){ byId('inputFoto').click() }
+function uploadFotoProfil(e){ const file = e.target.files[0]; if(!file) return; storage.ref('profil/'+user.id+'.jpg').put(file).then(snap=>snap.ref.getDownloadURL()).then(url=>db.ref('users/'+user.id).update({foto:url}).then(loadProfil)); }
 
-// KONTAK
-window.tambahKontak = async ()=>{
-  let id = document.getElementById('addContact').value.trim();
-  if(!id){alert('ID kosong'); return}
-  if(id == userId){alert('Itu ID kamu sendiri'); return}
-  const userSnap = await get(child(ref(db),'users/'+id));
-  if(!userSnap.exists()){alert('❌ ID tidak ditemukan. Suruh teman Simpan Pengaturan dulu'); return}
-  await set(ref(db, 'kontak/'+userId+'/'+id), true);
-  await set(ref(db, 'kontak/'+id+'/'+userId), true);
-  document.getElementById('addContact').value = "";
-  alert('✅ Kontak ditambahkan: '+userSnap.val().nama);
+/* ================= STATUS ================= */
+function validFile(file){
+  const max = 12 * 1024 * 1024;
+  if(!file) return false;
+  if(file.size > max) return false;
+  if(!/^image\/|^video\/|^audio\//.test(file.type)) return false;
+  return true;
 }
-
-function loadKontak(){
-  off(ref(db,'kontak/'+userId));
-  onValue(ref(db,'kontak/'+userId),snap=>{
-    document.getElementById('contactList').innerHTML='';
-    if(!snap.exists()){document.getElementById('contactList').innerHTML = '<div style="text-align:center;color:#666;padding:20px">Belum ada kontak</div>'; return;}
-    snap.forEach(childSnap=>{
-      let idTeman=childSnap.key;
-      get(child(ref(db),'users/'+idTeman)).then(s=>{
-        let d=s.val();
-        let nama = d?.nama || 'User '+idTeman;
-        let foto = d?.foto || 'https://i.imgur.com/8Km9tLL.png';
-        let email = d?.email || 'ID: '+idTeman;
-        document.getElementById('contactList').innerHTML+=`<div class="contact-item" onclick="bukaChatPrivate('${idTeman}')"><img src="${foto}"><div><b>${nama}</b><br><span style="font-size:12px;color:#888">${email}</span></div></div>`;
-      })
-    })
-  })
+function uploadStatus(){
+  const fi = document.createElement('input'); fi.type='file'; fi.accept='image/*,video/*';
+  fi.onchange = e => {
+    const file = e.target.files[0]; if(!file) return;
+    if(!validFile(file)) return alert('File tidak valid / terlalu besar (max 12MB)');
+    const type = file.type.startsWith('video') ? 'video' : 'image';
+    storage.ref('status/'+user.id+'/'+Date.now()).put(file).then(s=>s.ref.getDownloadURL()).then(url=>{
+      db.ref('status/'+user.id).set({nama:user.nama,type,url,time:Date.now()}); alert('Status diposting');
+    });
+  };
+  fi.click();
 }
-
-window.bukaChatPrivate = (idTeman) => {
-  let chatID = userId < idTeman? `chat_${userId}_${idTeman}` : `chat_${idTeman}_${userId}`;
-  document.getElementById('logo').innerText = "Chat Pribadi";
-  bukaChat(chatID);
-}
-
-// BUG 3 FIX: TAMBAH TYPE SAAT KIRIM
-function loadChat(){
-  if(chatListener) off(ref(db, currentChat), 'child_added', chatListener);
-  document.getElementById('chatBox').innerHTML='';
-  chatListener = onChildAdded(ref(db, currentChat), snap=>{
-    const m=snap.val();
-    let content = m.text || '';
-    if(m.file) content += `<br>${m.type=='video'?`<video src="${m.file}" controls></video>`:`<img src="${m.file}">`}`;
-    document.getElementById('chatBox').innerHTML += `<div class="msg ${m.user==currentUser?'me':'other'}"><b>${m.user}</b>${content}</div>`;
-    scrollKeBawah();
-  })
-}
-window.bukaChat=(id)=>{currentChat=id;document.getElementById('chatList').style.display='none';document.getElementById('chatBox').style.display='block';document.getElementById('chatInput').style.display='flex';loadChat();if(document.getElementById('sidebar').classList.contains('open')) toggleSidebar();history.pushState({page:'chat'},'','');}
-window.goHome=()=>{if(chatListener) off(ref(db, currentChat), 'child_added', chatListener);document.getElementById('chatBox').style.display='none';document.getElementById('chatInput').style.display='none';document.getElementById('chatList').style.display='block';document.getElementById('logo').innerText = "PessadtzChat";}
-function scrollKeBawah(){setTimeout(()=>{document.getElementById('chatBox').scrollTop = 99999},100)}
-
-window.kirim = async ()=>{
-  let txt = document.getElementById('pesan').value.trim();
-  let file = document.getElementById('fileUpload').files[0];
-  let fileURL = ""; let fileType = "";
-  if(file){
-    fileType = file.type.startsWith('video')? 'video' : 'image'; // BUG 3 FIX
-    const storageRef = sRef(storage, 'files/'+Date.now()+'_'+file.name);
-    await uploadBytes(storageRef, file);
-    fileURL = await getDownloadURL(storageRef);
-    document.getElementById('fileUpload').value = "";
-  }
-  if(txt || fileURL){push(ref(db, currentChat), {user:currentUser, text:txt, file:fileURL, type:fileType, time:Date.now()});document.getElementById('pesan').value="";}
-}
-
-// BUG 2 FIX: STATUS PAKE ONVALUE + TAMPILKAN FOTO/VIDEO
-document.getElementById('statusUpload').onchange = async e=>{
-  let file = e.target.files[0]; if(!file) return;
-  alert('⏳ Upload status...');
-  const fileType = file.type.startsWith('video')? 'video' : 'image';
-  const storageRef = sRef(storage, 'status/'+userId+'_'+Date.now()+'_'+file.name);
-  await uploadBytes(storageRef, file);
-  let url = await getDownloadURL(storageRef);
-  await push(ref(db,'status'),{user:currentUser, userId:userId, foto:myFoto, file:url, type:fileType, time:Date.now()});
-  alert('✅ Status berhasil');
-}
-
 function loadStatus(){
-  onValue(ref(db,'status'), snap=>{
-    document.getElementById('statusList').innerHTML='';
-    const now = Date.now();
-    const sehari = 24*60*60*1000;
+  // render safely without innerHTML injection
+  const list = byId('listStatus');
+  pushDbListener('status','value', snap=>{
+    list.innerHTML = '';
     snap.forEach(child=>{
       const s = child.val();
-      if(now - s.time < sehari){
-        let media = s.type=='video'? `<video src="${s.file}" controls></video>` : `<img src="${s.file}">`;
-        document.getElementById('statusList').innerHTML += `<div class="status-item">${media}<div><b>${s.user}</b><br><span style="font-size:12px;color:#888">${new Date(s.time).toLocaleTimeString()}</span></div></div>`;
-      }else{
-        set(ref(db,'status/'+child.key), null);
-      }
-    })
-  })
+      const row = document.createElement('div'); row.className='chat-item';
+      row.onclick = ()=> alert('Melihat status '+s.nama);
+      const thumb = document.createElement('div'); thumb.style.marginRight='10px';
+      if(s.type === 'video'){ const v = document.createElement('video'); v.src=s.url; v.style.width='48px'; v.style.height='48px'; v.style.borderRadius='50%'; v.style.objectFit='cover'; thumb.appendChild(v); }
+      else { const i = document.createElement('img'); i.src=s.url; i.style.width='48px'; i.style.height='48px'; i.style.borderRadius='50%'; i.style.objectFit='cover'; thumb.appendChild(i); }
+      const info = document.createElement('div'); info.innerHTML = `<b>${escapeHtml(s.nama)}</b><br><small>${new Date(s.time).toLocaleString()}</small>`;
+      row.appendChild(thumb); row.appendChild(info); list.appendChild(row);
+    });
+  });
 }
 
-window.copyID = ()=>{navigator.clipboard.writeText(userId);alert('ID disalin: '+userId)}
-window.addEventListener('popstate', ()=>{goHome();})
+/* ================= CONTACTS ================= */
+function showKontak(){ navigateTo('kontak') }
+function loadKontak(){
+  const container = byId('listKontak'); container.innerHTML = '<div class="section-title">KONTAK</div>';
+  db.ref('users').once('value').then(snap=>{
+    snap.forEach(child=>{
+      if(child.key === user.id) return;
+      const u = child.val();
+      const row = document.createElement('div'); row.className='chat-item'; row.onclick = ()=> bukaChat(child.key, u.nama);
+      const av = document.createElement('div'); av.className='avatar'; av.textContent = (u.nama||'?')[0];
+      if(u.foto){ const im = document.createElement('img'); im.src = u.foto; av.innerHTML=''; av.appendChild(im); }
+      const info = document.createElement('div'); info.style.flex='1'; info.innerHTML = `<b>${escapeHtml(u.nama)}</b><div style="opacity:.6; font-size:13px">${escapeHtml(child.key)}</div>`;
+      row.appendChild(av); row.appendChild(info); container.appendChild(row);
+    });
+  });
+}
+
+/* ================= ADMIN ================= */
+function showUsers(){ navigateTo('admin'); pushAdminContent(`<div class="section-title">DAFTAR PENGGUNA</div>`); db.ref('users').once('value').then(snap=>{ let out=document.createElement('div'); snap.forEach(child=>{ const u=child.val(); const r=document.createElement('div'); r.className='admin-list-row'; r.innerHTML=`<div style="width:42px;height:42px;border-radius:8px;background:var(--green);display:flex;align-items:center;justify-content:center">${escapeHtml((u.nama||'?')[0])}</div><div style="margin-left:8px"><b>${escapeHtml(u.nama)}</b><div style="opacity:.6;font-size:13px">${escapeHtml(child.key)} ${u.isAdmin?'<span style="margin-left:8px;background:var(--danger);padding:2px 6px;border-radius:6px;font-size:11px">ADMIN</span>':''}</div></div>`; out.appendChild(r); }); document.getElementById('adminContent').appendChild(out); }); }
+function showHistori(){ navigateTo('admin'); pushAdminContent(`<div class="section-title">LOG RIWAYAT CHAT</div><p style="opacity:.7">Fitur peninjau database aktif (ringkasan)</p>`); }
+function showSettingAI(){ navigateTo('admin'); pushAdminContent(`<div class="section-title">API KEY GEMINI</div><input id="apiKeyInput" style="width:100%;padding:10px;margin-top:10px;background:#242F3D;border-radius:8px;border:1px solid rgba(255,255,255,.06)"><button class="btn-login" style="margin-top:8px" onclick="saveGeminiKey()">Simpan</button>`); byId('apiKeyInput').value = localStorage.getItem('gemini_key') || ''; }
+function saveGeminiKey(){ localStorage.setItem('gemini_key', byId('apiKeyInput').value); alert('Tersimpan'); }
+
+/* Kegiatan admin (form + list) */
+let editingKegiatanId = null;
+function showKelolaKegiatan(){
+  navigateTo('admin');
+  const html = document.createElement('div');
+  html.className = 'card-presisi';
+  html.innerHTML = `
+    <div class="section-title">TAMBAH / EDIT KEGIATAN</div>
+    <input id="kegiatanJudul" placeholder="Judul" style="width:100%; padding:10px; background:#242F3D; border-radius:8px; border:1px solid rgba(255,255,255,.06); color:#fff">
+    <input id="kegiatanTanggal" type="datetime-local" style="width:100%; padding:10px; margin-top:8px; background:#242F3D; border-radius:8px; border:1px solid rgba(255,255,255,.06); color:#fff">
+    <textarea id="kegiatanDesc" placeholder="Deskripsi" rows="3" style="width:100%; padding:10px; margin-top:8px; background:#242F3D; border-radius:8px; border:1px solid rgba(255,255,255,.06); color:#fff"></textarea>
+    <button class="btn-login" style="margin-top:10px" onclick="simpanKegiatan()">Simpan Kegiatan</button>
+    <div class="section-title" style="margin-top:12px">DAFTAR KEGIATAN (ADMIN)</div>
+    <div id="listKegiatanAdmin"></div>
+  `;
+  pushAdminContentElement(html);
+  loadKegiatanAdmin(); // attach listener for list updates
+}
+function pushAdminContent(htmlString){ document.getElementById('adminContent').innerHTML = htmlString; }
+function pushAdminContentElement(el){ document.getElementById('adminContent').innerHTML=''; document.getElementById('adminContent').appendChild(el); }
+
+function simpanKegiatan(){
+  const judul = byId('kegiatanJudul').value.trim();
+  const tanggal = byId('kegiatanTanggal').value;
+  const desc = byId('kegiatanDesc').value.trim();
+  if(!judul) return alert('Isi judul dulu');
+  const id = editingKegiatanId || 'keg_'+Date.now();
+  db.ref('kegiatan/'+id).set({judul, tanggal, desc, time: Date.now()}).then(()=>{
+    alert('Kegiatan tersimpan');
+    editingKegiatanId = null;
+    byId('kegiatanJudul').value=''; byId('kegiatanTanggal').value=''; byId('kegiatanDesc').value='';
+  });
+}
+function loadKegiatanAdmin(){
+  // use pushDbListener so it can be removed on navigation
+  pushDbListener('kegiatan','value', snap=>{
+    const container = byId('listKegiatanAdmin'); container.innerHTML='';
+    snap.forEach(child=>{
+      const k = child.val();
+      const row = document.createElement('div'); row.className='admin-list-row';
+      const left = document.createElement('div'); left.innerHTML = `<div style="font-weight:700">${escapeHtml(k.judul)}</div><div style="opacity:.7;font-size:13px">${escapeHtml(k.tanggal || '')}</div><div style="margin-top:6px;opacity:.85">${escapeHtml(k.desc || '')}</div>`;
+      const actions = document.createElement('div'); actions.className='admin-actions';
+      const edit = document.createElement('i'); edit.className='fas fa-edit'; edit.style.cursor='pointer'; edit.style.color='var(--accent)';
+      edit.onclick = ()=> { editingKegiatanId = child.key; byId('kegiatanJudul').value = k.judul; byId('kegiatanTanggal').value = k.tanggal; byId('kegiatanDesc').value = k.desc; window.scrollTo({top:0,behavior:'smooth'}); };
+      const del = document.createElement('i'); del.className='fas fa-trash'; del.style.cursor='pointer'; del.style.color='var(--danger)'; del.onclick = ()=> { if(confirm('Hapus kegiatan?')) db.ref('kegiatan/'+child.key).remove(); };
+      actions.appendChild(edit); actions.appendChild(del);
+      row.appendChild(left); row.appendChild(actions);
+      container.appendChild(row);
+    });
+  });
+}
+
+/* ================= CHAT LIST & Bubbles ================= */
+function setupSidebar(){
+  const options = byId('fabOptions');
+  options.innerHTML = '';
+  const makeOption = (i, t, fn) => { const el=document.createElement('div'); el.className='fab-option'; el.innerHTML = `<i class="${i}"></i><div>${t}</div>`; el.onclick = fn; options.appendChild(el); };
+  makeOption('fas fa-robot','AI Asisten', ()=> bukaGemini());
+  makeOption('fas fa-address-book','Kontak', ()=> showKontak());
+  makeOption('fas fa-user','Profil', ()=> navigateTo('profil'));
+  makeOption('fas fa-cog','Pengaturan', ()=> navigateTo('setting'));
+  if(user && user.isAdmin) makeOption('fas fa-crown','Panel Admin', ()=> navigateTo('admin'));
+  makeOption('fas fa-sign-out-alt','Logout', ()=> logout());
+}
+
+function loadDaftarChat(){
+  pushDbListener('users','value', snap=>{
+    const list = byId('listChat'); list.innerHTML='';
+    snap.forEach(child=>{
+      if(child.key === user.id) return;
+      const u = child.val();
+      const row = document.createElement('div'); row.className='chat-item'; row.onclick = ()=> bukaChat(child.key, u.nama);
+      const av = document.createElement('div'); av.className='avatar'; av.textContent = (u.nama||'?')[0];
+      if(u.foto){ const im=document.createElement('img'); im.src=u.foto; av.innerHTML=''; av.appendChild(im); }
+      if(u.online){ const sd = document.createElement('div'); sd.className='status-dot'; av.appendChild(sd); }
+      const info = document.createElement('div'); info.style.flex='1'; info.innerHTML = `<b>${escapeHtml(u.nama)}</b><div id="last_${escapeHtml(getChatID(user.id,child.key))}" style="opacity:.65;font-size:13px">...</div>`;
+      row.appendChild(av); row.appendChild(info); list.appendChild(row);
+
+      // last message listener
+      const chatID = getChatID(user.id, child.key);
+      pushDbListener('chat_'+chatID,'child_added', s=>{
+        const el = byId('last_'+chatID);
+        if(el && s.val()){
+          const v = s.val();
+          el.textContent = `${v.nama}: ${v.text || (v.foto? '📷 Media' : v.video? '🎬 Video' : v.audio? '🔊 Audio' : '')}`;
+        }
+      });
+    });
+  });
+}
+
+/* safe bubble creator to avoid XSS */
+function createBubbleElement(msg){
+  const wrapper = document.createElement('div');
+  const isMe = msg.from === user.id;
+  wrapper.className = 'bubble ' + (isMe? 'me' : 'other');
+
+  const nameEl = document.createElement('div'); nameEl.style.fontWeight='700'; nameEl.textContent = msg.nama || (isMe? 'Anda':'Pengguna');
+  wrapper.appendChild(nameEl);
+
+  if(msg.text){
+    const p = document.createElement('div'); p.style.marginTop='6px'; p.textContent = msg.text; wrapper.appendChild(p);
+  } else if(msg.foto){
+    const img = document.createElement('img'); img.src = msg.foto; img.alt = (msg.nama||'foto'); wrapper.appendChild(img);
+  } else if(msg.video){
+    const v = document.createElement('video'); v.controls = true; v.src = msg.video; wrapper.appendChild(v);
+  } else if(msg.audio){
+    const a = document.createElement('audio'); a.controls = true; a.src = msg.audio; wrapper.appendChild(a);
+  }
+  return wrapper;
+}
+
+/* ================= OPEN CHAT ================= */
+function bukaChat(id, nama){
+  // close prior listeners
+  clearDbListeners();
+  chatAktif = id;
+  navigateTo('chat');
+  byId('namaChat').innerText = nama;
+  byId('chatBox').innerHTML = '';
+  setNoSidebar(true);
+
+  const chatPath = 'chat_'+getChatID(user.id, id);
+  pushDbListener(chatPath,'child_added', snap=>{
+    const msg = snap.val();
+    const el = createBubbleElement(msg);
+    byId('chatBox').appendChild(el);
+    // scroll to bottom
+    setTimeout(()=> byId('chatBox').scrollTop = byId('chatBox').scrollHeight, 40);
+  });
+  // push history for back handling
+  try{ history.pushState({page:'chat'}, '') }catch(e){}
+}
+
+/* ================= GEMINI navigation ================= */
+function bukaGemini(){ navigateTo('gemini'); }
+function openGemini(){ window.open('https://gemini.google.com', '_blank'); }
+function embedGemini(){ const cont = byId('geminiEmbed'); cont.innerHTML = ''; const iframe = document.createElement('iframe'); iframe.src='https://gemini.google.com'; iframe.style.width='100%'; iframe.style.height='600px'; iframe.frameBorder='0'; iframe.style.borderRadius='8px'; cont.appendChild(iframe); }
+
+/* ================= SENDING ================= */
+async function jawabAI(pesanUser){
+  const key = localStorage.getItem('gemini_key');
+  if(!key) return "Set API Key di admin dulu";
+  try{
+    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({contents:[{parts:[{text:pesanUser}]}]})
+    });
+    const data = await res.json();
+    return data?.candidates?.[0]?.content?.parts?.[0]?.text || "AI tidak merespon";
+  }catch(e){ return "AI error"; }
+}
+
+async function kirimPesan(){
+  const input = byId('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  if(!chatAktif) return alert('Pilih chat dulu');
+  const path = 'chat_'+getChatID(user.id, chatAktif);
+  db.ref(path).push({from:user.id, nama:user.nama, text, time:Date.now()});
+  input.value=''; autoResize(input);
+  // if ai chat (internal) - we moved gemini to external page, so don't call API by default
+  if(chatAktif === 'ai_gemini'){
+    alert('Gunakan halaman Gemini untuk berinteraksi dengan AI (halaman Gemini terbuka pada menu).');
+  }
+}
+
+/* media */
+function kirimMedia(e){
+  const file = e.target.files[0]; if(!file) return;
+  if(!validFile(file)) return alert('File tidak valid / terlalu besar (max 12MB)');
+  if(!chatAktif) return alert('Pilih chat dulu');
+  const type = file.type.startsWith('video')? 'video' : 'foto';
+  const path = 'chat_'+getChatID(user.id, chatAktif);
+  const ref = storage.ref(path+'/'+Date.now());
+  ref.put(file).then(s=>s.ref.getDownloadURL()).then(url=>{
+    const obj = {from:user.id,nama:user.nama,time:Date.now()};
+    if(type==='video') obj.video = url; else obj.foto = url;
+    db.ref(path).push(obj);
+  });
+}
+
+/* voice */
+async function mulaiRekam(){
+  if(!chatAktif) return alert('Pilih chat dulu sebelum merekam.');
+  try{
+    byId('btnMic').classList.add('recording');
+    streamGlobal = await navigator.mediaDevices.getUserMedia({audio:true});
+    mediaRecorder = new MediaRecorder(streamGlobal);
+    audioChunks = [];
+    mediaRecorder.ondataavailable = e=> audioChunks.push(e.data);
+    mediaRecorder.onstop = ()=>{
+      const audioBlob = new Blob(audioChunks, {type:'audio/webm'});
+      const path = 'chat_'+getChatID(user.id, chatAktif);
+      storage.ref(path+'/'+Date.now()+'.webm').put(audioBlob).then(s=>s.ref.getDownloadURL()).then(url=>{
+        db.ref(path).push({from:user.id,nama:user.nama,audio:url,time:Date.now()});
+      });
+    };
+    mediaRecorder.start();
+  }catch(err){ alert('Gagal akses mikrofon: '+err); byId('btnMic').classList.remove('recording'); }
+}
+function selesaiRekam(){ if(mediaRecorder && mediaRecorder.state==='recording') mediaRecorder.stop(); byId('btnMic').classList.remove('recording'); if(streamGlobal) { streamGlobal.getTracks().forEach(t=>t.stop()); streamGlobal=null; } }
+
+/* ================= INPUT helpers & keyboard handling ================= */
+function autoResize(el){ el.style.height='auto'; el.style.height = Math.min(el.scrollHeight,140) + 'px'; scrollChatToBottomOnFocus(); }
+function handleInputKey(e){ if(e.key === 'Enter' && !e.shiftKey){ e.preventDefault(); kirimPesan(); } }
+function scrollChatToBottomOnFocus(){
+  setTimeout(()=> {
+    const chatBox = byId('chatBox');
+    if(chatBox) chatBox.scrollTop = chatBox.scrollHeight;
+  }, 250);
+}
+byId('chatInput') && byId('chatInput').addEventListener && byId('chatInput').addEventListener('focus', scrollChatToBottomOnFocus);
+
+/* ================= SAFE helpers ================= */
+function escapeHtml(str = ''){ return String(str).replace(/[&<>"']/g, s=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[s]); }
+function getChatID(a,b){ return [a,b].sort().join('_') }
+
+/* ================= DOMContentLoaded initial ================= */
+document.addEventListener('DOMContentLoaded', ()=>{
+  loadSetting();
+  window.visualViewport?.addEventListener('resize', ()=>{
+  const inputArea = byId('inputArea');
+  if(inputArea) inputArea.style.bottom = `${window.innerHeight - window.visualViewport.height}px`;
+});
+  if(user){
+    db.ref('users/'+user.id).update({online:true});
+    setupSidebar();
+    navigateTo('home');
+    loadDaftarChat();
+    loadStatus();
+  } else {
+    navigateTo('home'); // show home (login)
+  }
+
+  // ensure when page unloaded, set offline
+  window.addEventListener('beforeunload', ()=>{ if(user) db.ref('users/'+user.id).update({online:false}); });
+
+  // soft "back" support for single page app: push initial state
+  try{ history.replaceState({page:'home'}, ''); }catch(e){}
+});
+
+/* ================= ADMIN util functions ================= */
+function pushAdminContent(html){ document.getElementById('adminContent').innerHTML = html; }
+
+/* ================= GEMINI KEY helper (kept for admin use) ================= */
+function saveGeminiKeyLocal(k){ localStorage.setItem('gemini_key', k) }
+
+/* ================= small helper to open gemini externally quickly ================= */
+function openGeminiQuick(){ window.open('https://gemini.google.com', '_blank'); }
+
+/* ================= ESCAPE: ensure chatInput exists reference safely on load ================= */
+(function attachFocusHandler(){
+  const el = byId('chatInput');
+  if(el) el.addEventListener('focus', scrollChatToBottomOnFocus);
+})();
+
 </script>
 </body>
 </html>
